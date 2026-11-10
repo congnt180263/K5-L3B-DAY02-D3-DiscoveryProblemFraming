@@ -8,7 +8,7 @@
 - Tên nhóm:D3
 - Thành viên: xem `TEAM.md`
 - Candidate problem được chọn (1 câu): Khi nhận được hóa đơn từ nhà cung cấp, nhân viên kế toán công nợ muốn đối chiếu thông tin với đơn đặt hàng (PO) và biên bản giao nhận, để đảm bảo tính chính xác trước khi thanh toán. Đối chiếu thông tin hóa đơn từ nhà cung cấp với đơn đặt hàng (PO) và biên bản giao nhận hàng (Kế toán công nợ - Candidate #8).
-- Quyết định cuối: Go / Not Yet / No-Go
+- Quyết định cuối: Not Yet
 
 ---
 

@@ -15,7 +15,7 @@
 | 1 |Nguyễn Thành Công | 2A202603789 | Điều phối thời gian, ghi chép, người phản biện, kiếm chứng | congnt180263 |
 | 2 | Đồng Văn Quyến|2A202603769 | Người phản biện chính + phụ trách research | dvq2609 |
 | 3 | Đào Ngọc Hân | 2A202603779 | Phụ trách gom Cluster (CP3), vẽ quy trình trước/sau (CP5), AI Canvas & Google PAIR (CP6), người phản biện | daongochan |
-| 4 | | | | |
+| 4 | Lê Thành Nguyên | 2A202603733 | Viết Problem Statement v0 (CP5) và v1 + tiêu chí đánh giá (CP6), vẽ cây OST (CP3), hỗ trợ quy trình trước/sau — bảng Before/After (CP5) | nguyenLTpk |
 
 Không ghi email hay số điện thoại vào bảng này, vì repo có thể để public.
 
@@ -111,3 +111,26 @@ Học được cách kiểm chứng, phản biện từ pitching, research và k
 **Điều mình học được từ phần nhóm:**
 
 - Học được cách phân biệt nhiệm vụ giữa **Rule** (xử lý phần tính toán số học tất định 100%) và **AI** (chỉ xử lý phần đọc hiểu chứng từ phi cấu trúc và soạn nháp ngoại lệ), cũng như đưa ra quyết định **`Not Yet`** khi nhóm mới chỉ có Desk Research mà chưa phỏng vấn trực tiếp kế toán viên thật.
+
+### LeThanhNguyen-2A202603733
+
+**Phần việc phụ trách:**
+
+- Viết cây Opportunity Solution Tree (CP3); phụ trách chính Problem Statement v0 (CP5) và Problem Statement v1 + tiêu chí đánh giá đầu ra AI (CP6); hỗ trợ Hân phần quy trình trước/sau với bảng Before/After (CP5).
+
+**Đóng góp cụ thể** (mình đã làm gì, ra sản phẩm gì):
+
+- Pitch 3 candidate `#4` (chấm tay chất lượng câu trả lời khi đổi prompt), `#5` (truy vết tham số thí nghiệm), `#6` (intern mới cài môi trường); đặt câu hỏi phản biện cho candidate `#3` về quyền truy cập dữ liệu ngân hàng.
+- Dựng cây OST ở mục `2.3`: 1 outcome chung, 3 opportunity theo Cluster A/B/C, lý do không đưa Cluster D vào cây, và gạch bỏ 7 ý là solution đội lốt opportunity.
+- Lập bảng Before/After ở mục `4.3` (số bước, thời gian, số bước thủ công, bottleneck, rủi ro mới phát sinh và cách xử lý).
+- Viết Problem Statement v0 ở mục `5` và ghi lại phản biện: tách chỉ số bỏ sót/báo nhầm, thêm chỉ số chất lượng kiểm duyệt, yêu cầu bấm giờ baseline thật.
+- Viết Problem Statement v1 ở mục `7`: thêm AI intervention point, mức chọn, rủi ro & người kiểm tra; bảng thay đổi so với v0 kèm lý do; 5 tiêu chí đánh giá đầu ra AI (Đạt / Không đạt). Tập kiểm thử và các metric ở mục 7 được dùng lại cho kế hoạch kiểm chứng và ngưỡng dừng ở mục `8.2`.
+
+**Bằng chứng** (phần nào trong `group_report.md`, file nào trong `report/assets/`, commit nào):
+
+- File `report/team/group_report.md`: Mục `2.3` (commit `45f67fe`), Mục `4.3` và `5` (commit `6919519`), Mục `7` (commit `7dac875`).
+- Báo cáo cá nhân: `report/individual/2A202603733_LeThanhNguyen.md` (commit `840bb37`).
+
+**Điều mình học được từ phần nhóm:**
+
+- Học được cách viết Problem Statement có metric đo được và tách riêng chỉ số bỏ sót với báo nhầm khi sai sót ảnh hưởng trực tiếp đến tiền; viết tiêu chí đánh giá AI theo dạng Đạt / Không đạt để có thể chấm được; và chấp nhận quyết định **`Not Yet`** khi baseline vẫn là số ước tính, chưa đo trên người dùng thật.
