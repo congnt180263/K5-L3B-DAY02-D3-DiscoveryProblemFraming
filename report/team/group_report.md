@@ -416,31 +416,44 @@ Vì sao:
 
 | Rủi ro | Câu hỏi | Mức độ rủi ro (Thấp = an toàn / TB / Cao = nguy hiểm) | Lý do / bằng chứng |
 |---|---|---|---|
-| **Value** | Người dùng có thật sự cần và sẽ dùng không? | | |
-| **Usability** | Người dùng có dùng được, có hiểu và sửa được đầu ra của AI không? | | |
-| **Feasibility** | Có đủ dữ liệu, công cụ, kỹ năng để làm không? | | |
-| **Viability** | Có hợp chi phí, pháp lý, quy định tổ chức không? Ai vận hành? | | |
+| **Value** | Người dùng có thật sự cần và sẽ dùng không? | **Cao** | Nhóm mới có desk research và phân tích quy trình; chưa phỏng vấn kế toán công nợ, chưa đo thời gian thật hoặc tần suất ngoại lệ. Tài liệu MISA xác nhận có bước kiểm tra/bổ sung chứng từ nhưng cũng cho thấy phần mềm đã tự lấy dữ liệu từ PO, nên chưa thể kết luận pain đủ lớn hay người dùng sẽ đổi cách làm. |
+| **Usability** | Người dùng có dùng được, có hiểu và sửa được đầu ra của AI không? | **Trung bình** | Workflow giữ kế toán ở vòng kiểm duyệt 100%, hiển thị chứng từ gốc cạnh kết quả, tô vàng ô dưới ngưỡng tin cậy và có fallback thủ công. Tuy vậy, chưa có buổi dùng thử để biết người dùng có hiểu cờ cảnh báo, tin cậy đúng mức và sửa nhanh hơn cách cũ hay không. |
+| **Feasibility** | Có đủ dữ liệu, công cụ, kỹ năng để làm không? | **Trung bình** | OCR/IDP, Rule đối chiếu và kiến trúc mẫu đã có (AWS Textract, Rossum); XML hóa đơn và dữ liệu PO thường có cấu trúc. Rủi ro còn lại là GRN ảnh/phiếu ghi tay, ánh xạ tên hàng–đơn vị tính và chất lượng dữ liệu thực tế. Nhóm chưa có bộ chứng từ được phép dùng để kiểm thử 50 bộ/50 lỗi như tiêu chí ở mục 7. |
+| **Viability** | Có hợp chi phí, pháp lý, quy định tổ chức không? Ai vận hành? | **Cao** | Chứng từ mua hàng chứa thông tin nhà cung cấp và giao dịch; chưa xác minh được chính sách đưa dữ liệu vào OCR/LLM bên ngoài, yêu cầu lưu trữ/audit log, chi phí API và người chịu trách nhiệm vận hành. Trong lab chỉ dùng chứng từ giả lập; không được suy ra là có thể triển khai trên dữ liệu thật. |
 
 ### 8.2. Kết luận
 
-**Quyết định:** Go / Not Yet / No-Go
+**Quyết định: Not Yet.**
 
-**Lý do:**
+**Lý do:** Hướng Workflow hợp lý về mặt thiết kế: Rule xử lý phép so khớp tất định, AI chỉ đọc/giải thích phần phi cấu trúc, còn kế toán và kế toán trưởng giữ quyền xác nhận. Tuy nhiên, hai rủi ro quan trọng nhất (Value và Viability) vẫn ở mức Cao. Nhóm chưa có bằng chứng từ người dùng thật, baseline đo được, bộ chứng từ hợp pháp để kiểm thử hay sự chấp thuận về dữ liệu. Vì thế chưa đủ cơ sở để cam kết triển khai/pilot trên dữ liệu doanh nghiệp.
 
-**Nếu Go — pilot nhỏ nhất:**
+**Nếu Go — pilot nhỏ nhất:** Chỉ thực hiện sau khi hoàn tất các kiểm chứng bên dưới: dùng **chứng từ đã ẩn danh hoặc giả lập**, không kết nối ERP/email và không cho hệ thống hạch toán hay gửi ra ngoài. Thử 20 bộ (ít nhất 5 bộ ngoại lệ) ở chế độ “shadow mode”: hệ thống chỉ tạo kết quả và cờ cảnh báo để kế toán đối chiếu song song với cách làm hiện tại. Đo thời gian thao tác, false negative/false positive và tỷ lệ kế toán phải sửa nháp; chỉ mở rộng nếu đạt các metric ở mục 7.
 
 **Nếu Not Yet — cần kiểm chứng gì trước:**
 
-**Nếu No-Go — nên làm gì thay AI:**
+1. Phỏng vấn/bấm giờ ít nhất 3 nhân viên kế toán công nợ về một lần đối chiếu gần nhất: loại chứng từ, thời gian luồng khớp và ngoại lệ, lỗi hay gặp, workaround và mức chấp nhận kết quả gợi ý.
+2. Xin phép dùng hoặc tạo tập kiểm thử đã ẩn danh: tối thiểu 50 bộ và tối thiểu 50 lỗi gài thuộc 6 loại nêu ở mục 7; xác định rõ ground-truth và người chịu trách nhiệm xác nhận.
+3. Kiểm tra chất lượng GRN: tỷ lệ ảnh/phiếu ghi tay đọc được, tần suất tên hàng hoặc đơn vị tính không trùng PO, và khả năng ghép đúng theo từng nhà cung cấp.
+4. Xác nhận với kế toán trưởng/IT về chính sách dữ liệu, lưu trữ, quyền truy cập, chi phí và đơn vị vận hành; chỉ đánh giá nhà cung cấp OCR/LLM sau khi có yêu cầu này.
 
-**Ngưỡng dừng** (nếu sau … mà … thì quay về …):
+**Nếu No-Go — nên làm gì thay AI:** Chuẩn hóa mã hàng, đơn vị tính và GRN điện tử theo PO; dùng tính năng liên kết PO/chứng từ có sẵn của phần mềm kế toán, checklist ngoại lệ và Rule Excel/ERP. Đây cũng là phương án phù hợp cho đơn vị có dữ liệu đã chuẩn hóa, vì không cần AI.
+
+**Ngưỡng dừng:** Sau shadow pilot 20 bộ, quay về Rule/checklist thủ công nếu xảy ra một trong các điều kiện: (1) có bất kỳ lỗi sai lệch gài nào lọt qua cả Rule và kiểm duyệt; (2) tỷ lệ bỏ sót trước HITL thấp hơn 98% hoặc báo nhầm từ 15% trở lên; (3) thời gian thao tác trung vị không giảm so với baseline; (4) kế toán phải viết lại từ 30% nội dung nháp giải trình trở lên; hoặc (5) không được phê duyệt dùng dữ liệu/nhà cung cấp OCR–LLM. Với lỗi nghiêm trọng liên quan giá trị thanh toán, dừng ngay và rà soát thiết kế trước khi thử lại.
 
 ---
 
 ## 9. Hạn chế và hướng tiếp theo
 
--
+- **Bằng chứng người dùng còn yếu:** Nhóm chưa phỏng vấn kế toán công nợ và chưa bấm giờ trên chứng từ thật; các số về 30–100 bộ/ngày, 20–30% ngoại lệ và thời gian xử lý trong báo cáo hiện là giả định để thiết kế, không phải kết quả nghiên cứu.
+- **Desk research không thay thế kiểm chứng hành vi:** MISA AMIS và các sản phẩm thị trường cho thấy khả năng kỹ thuật, nhưng không chứng minh doanh nghiệp mục tiêu có cùng quy trình, định dạng GRN hay sẵn sàng dùng AI.
+- **Dữ liệu đầu vào chưa đại diện:** Chưa có tập GRN ảnh/phiếu ghi tay đủ đa dạng để đo OCR, ánh xạ tên hàng và quy đổi đơn vị tính; metric ở mục 7 vì thế mới là kế hoạch đánh giá.
+- **Rủi ro dữ liệu và vận hành chưa được giải quyết:** Chưa làm rõ yêu cầu bảo mật, lưu trữ, audit log, chi phí API, tích hợp ERP và người chịu trách nhiệm khi hệ thống gắn cờ sai.
+- **Hướng tiếp theo:** Ưu tiên chuẩn hóa dữ liệu (mã hàng, đơn vị tính, GRN điện tử) và Rule trước. Khi có quyền dùng dữ liệu đã ẩn danh, thực hiện discovery với kế toán, xây bộ kiểm thử có ground-truth rồi chạy shadow pilot nhỏ. Chỉ sau đó mới cân nhắc tích hợp OCR/LLM; không mở rộng sang tự hạch toán hoặc tự duyệt chi.
 
 ## 10. Tài liệu tham khảo
 
--
+- MISA AMIS. [Mua hàng theo đơn mua hàng](https://helpact.misa.vn/kb/muahang_theodonhang/). Truy cập ngày 10/11/2026.
+- AWS. [Amazon Textract](https://aws.amazon.com/textract/). Truy cập ngày 10/11/2026.
+- AWS Samples. [Amazon Textract invoice processor](https://github.com/aws-samples/amazon-textract-invoice-processor). Truy cập ngày 10/11/2026.
+- MISA meInvoice. [Giải pháp hóa đơn điện tử](https://meinvoice.vn/). Truy cập ngày 10/11/2026.
+- Rossum. [Accounts Payable automation solution](https://rossum.ai/solutions/accounts-payable/). Truy cập ngày 10/11/2026.
