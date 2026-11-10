@@ -67,7 +67,7 @@ Mỗi thành viên thêm một mục theo mẫu dưới đây, tiêu đề là `
 
 **Bằng chứng** (phần nào trong `group_report.md`, file nào trong `report/assets/`, commit nào):
 
-- Phần 2.1, 3.1, 3.2, 8, 9 trong group_report.md
+- Phần 2.1, 3.1, 3.2, 8, 9 trong group_report.md. Commit: '3.1 3.2 group_report' ,'Report 2.1 and individual NguyenThanhCong',Part 8,9,10 group report
 
 **Điều mình học được từ phần nhóm:**
 Học được cách pitch 1 problem một cách cụ thể không theo trend, học được cách kiểm chứng giả định 1 vấn đề, lựa chọn một 1 vấn đề có ích cho doanh nghiệp và xã hội nhiều nhất.
