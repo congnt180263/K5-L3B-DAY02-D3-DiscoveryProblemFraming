@@ -375,29 +375,38 @@ Vì sao:
 
 | Trường | Nội dung |
 |---|---|
-| **Actor** | |
-| **Quy trình** | |
-| **Bottleneck** | |
-| **Impact** | |
-| **Success Metric** (baseline → target, cách đo) | |
-| **Boundary** | |
-| **AI intervention point** | |
-| **Mức chọn** | No AI / Rule / Workflow / Agent |
-| **Rủi ro & người kiểm tra** | |
+| **Actor** | Nhân viên kế toán công nợ ở doanh nghiệp vừa và nhỏ (dùng phần mềm kế toán như MISA AMIS), mỗi ngày kiểm 30–100 bộ chứng từ mua hàng trước khi trình duyệt thanh toán, **ở đơn vị mà biên bản giao nhận (GRN) vẫn là phiếu giấy/ảnh chụp có ghi tay số thực nhận, hoặc tên hàng trên hóa đơn NCC khác tên/mã vật tư trên PO**. *(Đơn vị đã nhập GRN điện tử theo đúng mã PO và NCC xuất hóa đơn chuẩn mã hàng: dừng ở Rule sẵn có của phần mềm kế toán, không cần AI — mục 6.2)* |
+| **Quy trình** | 1. Tiếp nhận hóa đơn và gom PO + GRN · 2. Đọc, tra cứu thông tin từng chứng từ (hóa đơn PDF/XML, PO trên phần mềm/Excel, GRN ảnh scan/phiếu giấy viết tay) · 3. Đối chiếu từng dòng hàng giữa 3 chứng từ · 4. Nếu lệch hoặc thiếu (~20–30% bộ): khoanh vùng sai lệch, hỏi lại Mua hàng / Kho / NCC rồi đối chiếu lại · 5. Xác nhận hợp lệ, trình Kế toán trưởng duyệt chi |
+| **Bottleneck** | **Bước 3** — dò mắt từng dòng hàng qua 3 tài liệu, 3.0–4.5 phút/bộ. Tách rõ 2 loại nguyên nhân: **(a) đọc hiểu phi cấu trúc** — số thực nhận và ghi chú viết tay trên ảnh GRN; tên hàng NCC viết tắt/khác quy cách, khác đơn vị tính so với PO *(phần mềm và Rule exact-match không xử lý được → chỗ cần AI)*; **(b) phép so khớp số học** — số lượng, đơn giá, VAT, tổng tiền *(Rule làm được chính xác 100% một khi dữ liệu đã chuẩn hóa)*. **Phụ: Bước 4** — xử lý ngoại lệ thêm 10–15 phút thao tác/bộ lệch, cộng vài giờ chờ phản hồi |
+| **Impact** | Riêng Bước 3 tốn 1.5–7.5 giờ công/ngày. Khoảng 20–30% bộ bị lệch (6–30 bộ/ngày) tốn thêm 1–7.5 giờ công/ngày và làm chậm kỳ thanh toán. Sai lệch bị bỏ sót do mỏi mắt dẫn tới trả thừa tiền, thanh toán trễ bị phạt hợp đồng, rủi ro bị xuất toán chi phí, phải điều chỉnh hóa đơn và xử lý lại. *(Các con số là ước tính ở 4.1, cần bấm giờ thật để xác nhận — xem Success Metric (1))* |
+| **Success Metric** (baseline → target, cách đo) | **(1) Tốc độ — thời gian thao tác của kế toán** (không tính thời gian chờ bộ phận khác): luồng khớp `6.0–7.5 → ≤ 2.0 phút/bộ`; luồng ngoại lệ `16–22 → ≤ 4.0 phút/bộ`. *Cách đo:* trước pilot bấm giờ thật 20 bộ chứng từ (≥ 5 bộ lệch) để chốt baseline thay cho số ước tính; sau pilot bấm giờ lại trên 20 bộ cùng loại.<br>**(2) An toàn — bỏ sót sai lệch (False Negative):** tỷ lệ phát hiện của hệ thống trước HITL `≥ 98%` lỗi gài; sau bước kế toán kiểm duyệt: `0` lỗi gài lọt qua. *Cách đo:* tập kiểm thử ≥ 50 bộ chứng từ giả lập, gài ≥ 50 lỗi trải đều 6 loại (lệch số lượng, lệch đơn giá, sai thuế suất VAT, sai tổng tiền, thiếu GRN/thiếu chữ ký kho, ghi chú tay "hàng vỡ/trả lại" trên GRN); đếm số lỗi được gắn cờ / tổng lỗi gài.<br>**(3) Báo nhầm (False Positive):** `< 15%` bộ chứng từ thực tế đúng bị gắn cờ lệch hoặc tô vàng. *Cách đo:* trên các bộ sạch của cùng tập kiểm thử.<br>**(4) Chất lượng kiểm duyệt & đầu ra AI:** Kế toán trưởng kiểm mẫu ngẫu nhiên hằng tuần 10% (tối thiểu 5 bộ) các bộ đã duyệt "Khớp": `0` bộ sai lọt; nội dung nháp giải trình kế toán phải viết lại `< 30%`. *Cách đo:* biên bản kiểm mẫu tuần + so sánh nháp AI với bản kế toán gửi đi |
+| **Boundary** | AI **không** tính tiền, thuế hay chênh lệch và **không** đưa ra kết luận "Khớp/Lệch" — chỉ Rule ở Bước 3 được kết luận. AI **không** tự sửa hoặc nội suy số liệu bị mờ/thiếu: ô có độ tin cậy `< 95%` phải để trống và tô vàng. AI **không** tự lưu cặp ánh xạ "tên hàng NCC → mã PO" mới vào từ điển; chỉ lưu khi kế toán đã xác nhận. AI **không** tự hạch toán công nợ, **không** tự duyệt thanh toán, **không** tự gửi email/tin nhắn cho NCC hay bộ phận khác (mọi đầu ra dừng ở trạng thái *"Bản nháp chờ duyệt"*). Kế toán kiểm nhận 100% bộ hồ sơ trước khi hạch toán; bắt buộc kiểm từng dòng với bộ bị gắn cờ lệch, bộ có ô tô vàng, cặp ánh xạ lần đầu xuất hiện, và hóa đơn vượt ngưỡng giá trị nội bộ. Kế toán trưởng duyệt chi cuối cùng. Trong lab chỉ dùng chứng từ giả lập |
+| **AI intervention point** | AI chỉ tham gia ở **2 điểm** của workflow (mục 4.2), không có mặt ở Bước 1, 3, 5:<br>**① Bước 2** — *sau khi* Rule đã gom bộ 3 chứng từ và đọc XML hóa đơn + dữ liệu PO, *trước khi* Rule so khớp số học: AI (OCR/IDP) trích xuất bảng hàng hóa từ ảnh/scan GRN (kể cả số và ghi chú viết tay) thành JSON kèm *confidence score* từng ô, và gợi ý ánh xạ tên hàng NCC → mã vật tư PO (kèm quy đổi đơn vị tính).<br>**② Bước 4** — *chỉ khi* Rule báo lệch/thiếu (~20–30% bộ), *trước khi* kế toán xử lý ngoại lệ: AI khoanh vùng dòng lệch trên ảnh chứng từ gốc, tóm tắt lý do lệch và soạn nháp tin nhắn/email xác minh gửi đúng bộ phận |
+| **Mức chọn** | **Workflow** — Rule ở Bước 1 & 3, AI ở Bước 2 & 4, Con người (HITL) ở Bước 5 (lập luận ở mục 6.1–6.2) |
+| **Rủi ro & người kiểm tra** | 1. **OCR đọc sai số lượng/ghi chú viết tay trên GRN** → *Kế toán công nợ* kiểm mọi ô tô vàng trên màn hình đối chiếu song song (ảnh gốc đặt cạnh kết quả).<br>2. **AI ánh xạ sai tên hàng NCC sang mã PO** (nhất là mã khác giá) → *Kế toán công nợ* xác nhận mọi cặp ánh xạ lần đầu xuất hiện; cặp đã xác nhận mới chuyển thành Rule cố định.<br>3. **Kế toán ỷ lại máy, duyệt nhanh các bộ "Khớp"** → *Kế toán trưởng* kiểm mẫu ngẫu nhiên hằng tuần; *đối chiếu công nợ cuối tháng với NCC* là lớp hậu kiểm cuối.<br>4. **Nháp giải trình sai nội dung hoặc sai bộ phận nhận** → *Kế toán công nợ* duyệt/sửa trước khi bấm gửi (AI không tự gửi).<br>5. **Dữ liệu hóa đơn/NCC đi qua dịch vụ OCR/LLM bên ngoài; chi phí API** → *Kế toán trưởng* (cùng IT, nếu có) phê duyệt nhà cung cấp dịch vụ trước khi dùng dữ liệu thật; lab chỉ dùng chứng từ giả lập.<br>6. **Dịch vụ OCR/AI gián đoạn** → *Kế toán công nợ* bấm "Chuyển sang đối chiếu thủ công" trên MISA AMIS / checklist Excel (fallback ở 4.2) |
 
 **Thay đổi so với v0 và lý do:**
 
 | Trường | v0 | v1 | Vì sao đổi |
 |---|---|---|---|
-| | | | |
+| **Actor** | Kế toán công nợ ở DN vừa và nhỏ dùng MISA AMIS, 30–100 bộ/ngày | Thu hẹp: chỉ ở đơn vị có GRN giấy/ảnh viết tay hoặc tên hàng NCC khác mã PO; đơn vị đã số hóa GRN theo mã PO thì dừng ở Rule | Mục 6.2: với đơn vị đã nhập GRN điện tử đúng mã PO, Rule sẵn có của phần mềm kế toán là đủ, không cần AI |
+| **Bottleneck** | Bước 3 dò mắt 3.0–4.5 phút/bộ, liệt kê chung các nguyên nhân | Tách 2 loại nguyên nhân: (a) đọc hiểu phi cấu trúc → AI; (b) so khớp số học → Rule | Mục 6.1–6.2: chỉ phần (a) Rule không làm được; tách ra để AI chỉ được dùng đúng chỗ, không đụng vào phép tính tiền |
+| **Impact** | Giờ công + rủi ro trả thừa, phạt hợp đồng | Thêm rủi ro bị xuất toán chi phí; ghi rõ số liệu là ước tính, cần bấm giờ xác nhận | Phản biện ở mục 5 (AI): baseline và tỷ lệ ngoại lệ đều là ước tính, mục 3.2 chưa có bằng chứng thời gian thật |
+| **Success Metric** | (1) Thời gian; (2) Tỷ lệ phát hiện sai lệch `≥ 95%` gộp chung một con số | (1) Thời gian, thêm bước bấm giờ baseline thật; (2) Bỏ sót: phát hiện `≥ 98%` trước HITL, `0` lọt sau HITL; (3) Báo nhầm `< 15%`; (4) Kiểm mẫu tuần `0` bộ sai lọt + nháp viết lại `< 30%` | Phản biện ở mục 5: bỏ sót tệ hơn báo nhầm nên phải tách 2 chỉ số (mục 6.4); metric v0 chỉ đo tốc độ, thiếu chỉ số chất lượng kiểm duyệt chống ỷ lại máy |
+| **Boundary** | AI không tính tiền, không sửa số, không hạch toán/duyệt/gửi; HITL 100% | Thêm: AI không kết luận "Khớp/Lệch"; ô `< 95%` để trống + tô vàng; không tự lưu ánh xạ mới khi chưa được xác nhận; lab chỉ dùng dữ liệu giả lập | Mục 6.3 (Feedback: từ điển ánh xạ được tích lũy từ thao tác sửa tay) và 6.4 (4 lớp chống bỏ sót) cần ranh giới cụ thể hơn |
+| **AI intervention point / Mức chọn / Rủi ro & người kiểm tra** | *(chưa có)* | Thêm mới theo yêu cầu v1 | Kết quả phân tích mức can thiệp ở mục 6 |
 
-**Tiêu chí đánh giá đầu ra của AI (3–5 tiêu chí):**
+**Tiêu chí đánh giá đầu ra của AI (5 tiêu chí):**
+
+*Chấm trên tập kiểm thử chứng từ giả lập có ground-truth (mục Success Metric (2)). Tiêu chí 1–3 cho đầu ra AI ở **Bước 2**, tiêu chí 4–5 cho đầu ra AI ở **Bước 4**.*
 
 | # | Tiêu chí | Đạt khi | Không đạt khi |
 |---:|---|---|---|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
+| 1 | **Trích xuất đúng các trường trọng yếu trên GRN** (mã/tên hàng, số lượng thực nhận, đơn vị tính, ghi chú tay, chữ ký nhận) | Mọi ô được AI gắn độ tin cậy `≥ 95%` đều khớp ground-truth; tỷ lệ ô đúng trên toàn tập `≥ 98%` | Có dù chỉ **1 ô số lượng/đơn giá sai mà vẫn gắn `≥ 95%`** (lỗi "tự tin sai" — đi thẳng qua Rule, gây bỏ sót); hoặc bỏ mất ghi chú tay "hàng vỡ/thiếu/trả lại" |
+| 2 | **Không bịa — biết nói "không chắc"** | Ô mờ, bị chữ ký đè hoặc thiếu được trả về rỗng/`null` kèm độ tin cậy `< 95%` và bị tô vàng | AI tự điền một con số nội suy cho ô không đọc được, hoặc gắn độ tin cậy cao cho ô không có trên ảnh gốc |
+| 3 | **Ánh xạ đúng tên hàng NCC → mã vật tư PO** (kể cả quy đổi đơn vị tính thùng/hộp/cái) | Gợi ý top-1 đúng `≥ 95%` số dòng; mọi dòng không chắc chắn hoặc lần đầu gặp đều gắn cờ "cần xác nhận" | Gán sang một mã hàng khác (nhất là mã khác đơn giá) mà **không** gắn cờ; hoặc quy đổi sai đơn vị tính làm lệch số lượng |
+| 4 | **Tóm tắt ngoại lệ đúng và truy được nguồn** | Nêu đúng dòng lệch, loại lệch và con số lấy từ kết quả Rule ở Bước 3; vùng khoanh trên ảnh gốc trùng đúng dòng lệch; mọi nhận định truy được về chứng từ | Nêu sai dòng/sai con số, tự đưa ra con số không có trong kết quả Rule, khoanh nhầm vùng, hoặc suy đoán nguyên nhân không có căn cứ ("chắc do NCC gian lận") |
+| 5 | **Nháp xác minh dùng được ngay** | Gửi đúng bộ phận theo loại lệch (Kho: số lượng/chữ ký; Mua hàng: đơn giá/mã hàng; NCC: hóa đơn điều chỉnh), đủ mã PO, số hóa đơn, dòng lệch, việc cần làm; kế toán sửa `< 30%` nội dung | Sai người nhận, thiếu mã chứng từ để đối phương tra cứu, hoặc kế toán phải viết lại `≥ 30%` nội dung |
 
 ---
 
