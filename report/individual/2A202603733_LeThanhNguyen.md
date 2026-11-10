@@ -152,16 +152,16 @@ Prompt "PM hoài nghi" trong worksheet, áp vào Card #1:
 
 | Hoạt động | Tôi đã làm gì? | Kết quả / ảnh hưởng tới bài nhóm |
 |---|---|---|
-| Pitch Problem Card | | |
-| Phản biện bài của bạn khác | Câu hỏi tôi đã đặt: | |
-| Nhận phản biện | Câu hỏi tôi nhận được: | Tôi đã sửa gì: |
-| Gom cluster / cây OST | | |
-| Chọn candidate problem | | |
-| Kiểm chứng / research | | |
-| Quy trình nhóm | | |
-| Problem Statement | | |
-| Mức can thiệp AI | | |
-| Quyết định | | |
+| Pitch Problem Card | Pitch 3 candidate: `#4` chấm tay 100 cặp câu trả lời khi đổi prompt (~150 phút/lần, 2 lần/tuần), `#5` truy vết tham số và metric từ nhiều file log (~15 phút/lần), `#6` intern mới cài môi trường (60–120 phút/người) | Cả 3 vào Cluster B/C và cây OST. Điểm shortlist: `#4` 27, `#5` 24, `#6` 24. Nhóm chọn `#8` (33 điểm) vì có ground-truth rõ và impact tài chính đo được |
+| Phản biện bài của bạn khác | Câu hỏi tôi đã đặt: hỏi Hân ở candidate `#3` (gom giao dịch chi tiêu đa kênh): "Vấn đề về cho phép truy cập thông tin của ngân hàng?" | `#3` bị loại ở mục 2.4 vì vướng rào cản bảo mật dữ liệu tài chính cá nhân; ở cây OST, ý "kết nối, truy cập dữ liệu ngân hàng để tự phân loại chi tiêu" bị gạch vì là giải pháp, pain thật là giao dịch QR thiếu ngữ cảnh |
+| Nhận phản biện | Câu hỏi tôi nhận được: Quyến hỏi `#4` "Nếu dùng LLM để kiểm tra output của AI local doanh nghiệp thì có rủi ro bảo mật?"; Công hỏi `#5` "Chưa rõ hướng ứng dụng AI vào bài toán?"; Hân hỏi `#6` "Có thể áp dụng chatbot để tăng hiệu quả không?" | Tôi đã sửa gì: khi viết cây OST (2.3), gạch bỏ "Dùng LLM để chấm, kiểm tra output" (`#4`) và "Chatbot hỗ trợ intern" (`#6`) vì là solution đội lốt opportunity, viết lại thành pain thật (chấm tay lâu, hai người chấm lệch; trả lời lặp lại cùng câu hỏi). Với `#5`, giữ kết luận No AI như Problem Card #2 |
+| Gom cluster / cây OST | Viết cây OST ở mục 2.3 (commit `45f67fe`): 1 outcome chung, 3 opportunity theo Cluster A/B/C kèm số liệu từng candidate, lý do không đưa Cluster D vào cây, 7 ý gạch bỏ | Nhóm dùng cây này để thấy `#8` nằm trong Opportunity B (đối chiếu đa nguồn, dễ sót lỗi), làm cơ sở chấm điểm ở 2.4 |
+| Chọn candidate problem | Cùng cả nhóm chấm điểm shortlist 12 candidate theo 7 tiêu chí (CP3) | Nhóm thống nhất chọn `#8` Đối chiếu hóa đơn – PO – biên bản giao nhận |
+| Kiểm chứng / research | Không phụ trách chính (CP4 do Công và Quyến làm, theo phân công trong `TEAM.md`) | Dùng kết quả 3.2 (MISA AMIS đã liên kết PO ở luồng chuẩn) để thu hẹp bottleneck khi viết Problem Statement v0 |
+| Quy trình nhóm | Hỗ trợ Hân ở CP5: lập bảng Before/After ở mục 4.3 (commit `6919519`), gồm số bước, thời gian bình quân, số bước thủ công, bottleneck và 5 rủi ro mới phát sinh kèm cách xử lý | Chỉ ra thời gian chờ Kho/Mua hàng/NCC gần như không giảm, và bottleneck mới (kế toán kiểm duyệt) là điểm kiểm soát cần giữ, không tự động hóa |
+| Problem Statement | Viết Problem Statement v0 (mục 5, commit `6919519`) và v1 + 5 tiêu chí đánh giá đầu ra AI (mục 7, commit `7dac875`) | v1 khác v0 ở 5 trường: thu hẹp Actor, tách Bottleneck thành phần AI/Rule, tách metric bỏ sót (≥ 98% trước HITL, 0 lọt sau HITL) và báo nhầm (< 15%), thêm chỉ số kiểm mẫu, bổ sung Boundary |
+| Mức can thiệp AI | Cùng Quyến và Hân ở CP6 (theo phân công trong `TEAM.md`); phản biện ở mục 5 được dùng làm đầu vào | AI Canvas 6.3 lấy Outcome "tách riêng theo phản biện Mục 5"; câu PAIR 6.4 phân tích bỏ sót tệ hơn báo nhầm, khớp với metric v1 |
+| Quyết định | Không phụ trách chính (Công làm chính, Quyến hỗ trợ) | Tập kiểm thử 50 bộ / 50 lỗi gài và các ngưỡng metric ở mục 7 được dùng lại trong kế hoạch kiểm chứng và ngưỡng dừng của quyết định **Not Yet** ở mục 8.2 |
 
 ---
 
@@ -171,10 +171,10 @@ Prompt "PM hoài nghi" trong worksheet, áp vào Card #1:
 |---|---|---|---|---|
 | CP1 Scan | Nhờ Claude gợi lại 10 problem theo bối cảnh sinh viên năm cuối kiêm AI intern | Gợi ý đủ 4 lăng kính, trải cả việc học, thực tập và tìm việc; gợi ý dạng Job Story | Số liệu là ước lượng giả định hoặc không có, AI ước lượng 23 trích dẫn sai, mất 2 giờ; nhóm chat 300 tin/tuần; chỉnh CV 45 phút. | Tôi đã sửa với số liệu của mình, sửa theo thực tế: hơn 10 trích dẫn, mất 1 giờ; hơn 500 tin/tuần; hơn 30 phút/lần|
 | CP2 Problem Card | Nhờ Claude soạn nháp 3 card và đóng vai "PM hoài nghi" phản biện Card #1 | Chỉ ra baseline chưa đo thật, và nên thử Rule (chấm riêng câu thay đổi, rubric có ví dụ) trước khi dùng mô hình chấm | Baseline 145 phút/lần trong Card #1 chỉ là ước lượng, chưa đo thật | Tự bấm giờ 2 lần đánh giá (148 và 152 phút), cập nhật baseline thành 150 phút trong Impact, Success metric và sơ đồ; chỉnh bước 4 (so điểm, thảo luận câu lệch) thành 25 phút cho đúng thực tế |
-| CP4 Research | | | | |
-| CP5 Quy trình | | | | |
-| CP5–6 Problem Statement | | | | |
-| CP6 Mức can thiệp / quyết định | | | | |
+| CP4 Research | Không dùng AI | — | — | — |
+| CP5 Quy trình | Không dùng AI | — | — | — |
+| CP5–6 Problem Statement | Nhờ Claude phản biện Problem Statement v0; sau đó nhờ Claude soạn nháp mục 7 (Problem Statement v1 + tiêu chí đánh giá) dựa trên mục 4–6 của nhóm | Chỉ ra 3 điểm yếu của v0: baseline chỉ là ước tính; metric phát hiện sai lệch gộp chung 95% trong khi bỏ sót tệ hơn báo nhầm; metric chỉ đo tốc độ, không đo chất lượng kiểm duyệt. Bản nháp v1 bám đúng AI Canvas 6.3 và câu PAIR 6.4 | Tự đề xuất một số con số chưa có căn cứ thực tế (tập kiểm thử 50 bộ / 50 lỗi gài, kiểm mẫu 10% mỗi tuần, ngưỡng ánh xạ đúng ≥ 95%) | Quy định rõ tập 50 bộ / 50 lỗi gài chỉ là dữ liệu giả lập có ground-truth để test nội bộ; sửa yêu cầu tỷ lệ bỏ sót sau HITL thành tuyệt đối 0% lọt lỗi; bổ sung cơ chế tô vàng ô có độ tin cậy < 95% và chuyển các ngưỡng này làm điều kiện dừng của quyết định Not Yet ở mục 8.2 |
+| CP6 Mức can thiệp / quyết định | Không dùng AI | — | — | — |
 
 ---
 
@@ -184,39 +184,31 @@ Trả lời bằng trải nghiệm thật của bạn, tối thiểu 200 từ ch
 
 **6.1. Tôi học được gì khi nghe top 3 problems của các bạn khác?**
 
-Khi nghe bạn ___ pitch problem "___", tôi nhận ra ___. So với card của mình, cách bạn ấy viết bottleneck/metric ___ ở chỗ ___. Sau đó tôi đã/muốn sửa card của mình ở trường ___.
+Khi nghe bạn Công pitch candidate `#8` ("Đối chiếu thông tin hóa đơn từ nhà cung cấp với đơn đặt hàng PO và biên bản giao nhận"), tôi nhận ra một problem của doanh nghiệp có giá trị thực tế cao khi có quy trình nghiệp vụ chuẩn mực, actor xác định rõ (kế toán công nợ) và đặc biệt là có ground-truth 100% khách quan (số tiền, số lượng khớp hay lệch số học). So với các card của cá nhân tôi (như `#4` chấm output prompt hay `#5` tìm log thí nghiệm) vốn mang tính nội bộ trong phòng lab AI intern và ranh giới đánh giá còn cảm tính, bài toán `#8` của Công có impact tài chính đo lường được ngay nếu trả thừa tiền hoặc thanh toán trễ. Ngoài ra, khi nghe bạn Hân pitch `#1` (đón khách Xanh SM), cách Hân bóc tách bottleneck chi tiết tới từng 1.0–1.5 phút rất thuyết phục, nhưng bài toán lại vướng rào cản khả thi và an toàn giao thông ngoài thực tế. Nhờ đó, tôi đã muốn sửa card `#1` của mình: phải bấm giờ đo lường bottleneck thực tế thay vì ước lượng cảm tính, đồng thời phải ưu tiên rà soát phương án Rule hoặc sửa quy trình trước khi vội vã đề xuất mô hình AI.
 
 **6.2. Nhóm có lúc nào bị "solution-first" (nghĩ giải pháp trước khi hiểu vấn đề) không? Lúc đó nhóm nhận ra và xử lý thế nào?**
 
-Lúc ___ (CP mấy), nhóm/tôi đã nói "___" trước khi ___. Người nhận ra là ___, nhờ câu hỏi "___". Nhóm quay lại bằng cách ___. Bản thân tôi, vì đang thực tập AI, có/không bị kéo về phía dùng mô hình sớm ở chỗ ___.
+Lúc CP3 khi hội tụ 12 candidate để dựng cây OST (mục 2.3), cả nhóm và chính tôi đã mắc lỗi "solution-first" khi gọi tên hàng loạt candidate bằng giải pháp công nghệ: "AI tóm tắt nhóm chat" (`#2`), "Kết nối ngân hàng tự phân loại chi tiêu" (`#3`), "Dùng LLM để chấm output prompt" (`#4` của tôi), "Chatbot hỗ trợ intern" (`#6` của tôi), và "AI đối chiếu chứng từ" (`#8` của Công). Nhóm nhận ra điều này khi tôi phụ trách vẽ cây OST: khi đặt Outcome chung ("Giảm thời gian tổng hợp, đối chiếu thủ công mà không tăng tỷ lệ sót lỗi"), các ý trên đều là tính năng hoặc công cụ chứ không phải nhu cầu hay nỗi đau thực tế. Nhóm đã xử lý dứt khoát bằng cách gạch bỏ thẳng tay 7 ý giải pháp đội lốt opportunity (ghi dấu ✗ trong mục 2.3) và viết lại thành pain thật: ví dụ `#4` đổi thành "chấm tay lâu, hai người chấm lệch nhau", `#8` đổi thành "đối chiếu tay 3 loại chứng từ, dễ sót sai lệch". Bản thân tôi, vì đang thực tập ở vị trí AI intern, bị kéo về phía dùng mô hình rất sớm: ngay ở Card `#1` tôi đã nghĩ đến LLM chấm sơ bộ, và ở `#8` ban đầu tôi cũng nghĩ ngay đến việc đưa Multimodal LLM vào đọc toàn bộ chứng từ. Chỉ sau khi nhóm làm bảng so sánh 4 mức ở CP6, tôi mới tỉnh táo nhận ra các phép tính số học và kiểm tra thuế bắt buộc phải chạy bằng Rule cố định để đảm bảo tính tất định, AI chỉ được hỗ trợ đọc hiểu dữ liệu phi cấu trúc.
 
 **6.3. Tôi có đổi ý sau khi bị phản biện không? Kể một lần cụ thể.**
 
-Khi pitch card "___", bạn ___ hỏi: "___". Lúc đầu tôi nghĩ ___. Sau khi ___, tôi đổi ý và sửa trường ___ từ "___" thành "___".
+Có, tôi đã đổi ý rất lớn ở khâu thiết kế Success Metric khi viết Problem Statement từ v0 sang v1. Khi viết bản nháp v0 (mục 5), tôi đặt chỉ số phát hiện sai lệch gộp chung là "Tỷ lệ phát hiện sai lệch ≥ 95%" theo thói quen đánh giá độ chính xác (Accuracy/Recall) của các bài toán Machine Learning thông thường. Tuy nhiên, khi nhận phản biện từ AI (Claude) và câu hỏi của bạn Quyến ("Rủi ro về kinh tế khi AI đối chiếu sai lệch mà không được confirm lại?"), tôi bị chất vấn rằng: đối với nghiệp vụ kế toán tài chính, để lọt sai lệch (Bỏ sót — False Negative) tệ hơn rất nhiều so với Báo nhầm (False Positive). Một tỷ lệ gộp 95% đồng nghĩa với việc cứ 20 lỗi sai thì bỏ lọt 1 lỗi, dẫn thẳng tới nguy cơ thất thoát tiền mặt hoặc bị cơ quan thuế phạt. Lúc đầu tôi nghĩ 95% đã là ngưỡng rất cao cho mô hình, nhưng sau khi cùng nhóm phân tích hai câu hỏi của Google PAIR (mục 6.4), tôi nhận ra sự bất đối xứng nghiêm trọng về chi phí: báo nhầm chỉ tốn 30 giây để kế toán nhìn ảnh gốc xác nhận lại, còn bỏ sót sẽ gây hậu quả tài chính khôn lường. Tôi hoàn toàn đổi ý và viết lại trường Success Metric ở v1 (mục 7): tách hẳn thành 2 chỉ số độc lập — tỷ lệ phát hiện của hệ thống trước HITL đạt ≥ 98% và sau khi kế toán duyệt phải đạt 0% lỗi lọt qua (False Negative = 0%), trong khi tỷ lệ báo nhầm (False Positive) khống chế dưới 15%; đồng thời bổ sung chỉ số kiểm mẫu ngẫu nhiên 10% mỗi tuần của Kế toán trưởng để triệt tiêu tâm lý ỷ lại máy.
 
 **6.4. Kết quả kiểm chứng (phỏng vấn/survey/research) có làm tôi bất ngờ không? Điều gì?**
 
-Trước khi kiểm chứng, nhóm giả định ___. Khi hỏi ___ người (vai trò: ___), điều bất ngờ là ___. Khi research, công cụ/case ___ đã giải được bước ___, nên nhóm ___.
+Trước khi kiểm chứng, nhóm giả định rằng kế toán công nợ phải nhập liệu và dò mắt thủ công hoàn toàn từ đầu đến cuối đối với cả 3 loại chứng từ, và các phần mềm kế toán hiện nay chưa có tính năng liên kết nào. Khi bạn Công và Quyến thực hiện Desk Research trên tài liệu hướng dẫn chính thức của MISA AMIS (mục 3.2), điều làm tôi rất bất ngờ là phần mềm kế toán nội địa này vốn đã hỗ trợ tính năng tự động liên kết và kéo dữ liệu từ đơn mua hàng (PO) sang chứng từ mua hàng ở luồng chuẩn. Đồng thời, khi research các giải pháp quốc tế như Rossum.ai và AWS Textract (mục 3.3), chúng tôi nhận thấy các hệ thống chuyên nghiệp đều tách bạch: dùng OCR trích xuất JSON, sau đó chạy Rule so khớp số học và hiển thị màn hình đối chiếu song song cho con người kiểm duyệt. Nhận định này phản bác giả định ngây thơ ban đầu của nhóm rằng cần dùng AI cho toàn bộ quy trình. Kết quả đó buộc nhóm phải thu hẹp ngay phạm vi bài toán: không giải quyết khâu liên kết chuẩn mà phần mềm đã làm tốt, mà chỉ tập trung vào các mắt xích ngoại lệ mà Rule bó tay — đó là bóc tách chữ viết tay/số lượng thực nhận trên ảnh scan biên bản giao nhận (GRN) và gợi ý ánh xạ khi tên hàng hóa trên hóa đơn nhà cung cấp viết tắt khác với mã vật tư nội bộ trên PO.
 
 **6.5. Điều khó nhất khi viết Problem Statement là gì?**
 
-Khó nhất với tôi là trường ___, vì ___. Nhóm đã sửa trường này ___ lần, từ "___" thành "___".
+Khó nhất với tôi (với vai trò người trực tiếp chắp bút cả Problem Statement v0 ở mục 5 và v1 ở mục 7) là xác định trường **Boundary** và trường **Success Metric**. Ở trường Success Metric, nhóm đã phải sửa qua 2 phiên bản: từ một con số gộp 95% mơ hồ ở v0 sang bộ 4 chỉ số định lượng khắt khe ở v1 (thời gian thao tác ≤ 2.0 phút, tỷ lệ bỏ sót 0% sau HITL trên tập test 50 lỗi gài, báo nhầm < 15%, và kiểm mẫu tuần 0 bộ sai lọt). Nhưng thử thách lớn nhất về mặt tư duy là viết trường Boundary: tôi phải liên tục đấu tranh để "tước bớt quyền" của AI. Rất dễ bị cám dỗ cho AI tự động hóa hoàn toàn để bài toán trông "thông minh" hơn, nhưng khi đối chiếu với nghiệp vụ tài chính, tôi buộc phải đặt ranh giới đanh thép: AI tuyệt đối không được tính toán cộng trừ tiền/thuế, không tự sửa số liệu bị mờ, không được tự đưa ra kết luận Khớp/Lệch, và mọi đầu ra nháp giải trình không được tự động gửi đi ra bên ngoài. Việc giữ cho con người luôn kiểm duyệt 100% hồ sơ trước khi hạch toán là ranh giới sống còn của bài toán.
 
 **6.6. Nếu làm lại, tôi sẽ đổi gì? Tôi sẽ phản biện nhóm mạnh hơn ở điểm nào?**
 
-Nếu làm lại, tôi sẽ ___ sớm hơn, vì ___. Giả định nhóm vẫn chưa kiểm chứng xong là ___. Nếu có thêm 1 tuần, tôi sẽ hỏi/đo ___. Tôi sẽ phản biện mạnh hơn ở chỗ ___.
+Nếu làm lại, tôi sẽ thúc đẩy nhóm tiến hành phỏng vấn sâu và quan sát thực tế ít nhất 2–3 nhân viên kế toán công nợ thật ngay từ CP4, thay vì chỉ dựa vào Desk Research tài liệu tính năng của MISA AMIS. Giả định lớn nhất mà nhóm hiện vẫn chưa kiểm chứng xong bằng dữ liệu thực nghiệm là: tỷ lệ phát sinh sai lệch thực tế có đúng là 20–30% hay không, thời gian kế toán dò mắt có đúng mất 3.0–4.5 phút/bộ hay không, và tại các doanh nghiệp SME hiện nay thì phiếu GRN có bao nhiêu phần trăm vẫn là phiếu giấy viết tay. Nếu có thêm 1 tuần, tôi sẽ đến ngồi cạnh một nhân viên kế toán công nợ trong một buổi làm việc để bấm giờ thật trên 20 bộ chứng từ, đồng thời xin một tập chứng từ mẫu đã ẩn danh (anonymized) gồm cả ảnh scan GRN thực tế để kiểm tra năng lực trích xuất chữ viết tay của các mô hình OCR hiện nay. Tôi sẽ phản biện nhóm mạnh hơn ở chỗ: không được phép chủ quan lấy các con số ước tính giả định làm căn cứ vững chắc để thiết kế hệ thống; chừng nào chưa có dữ liệu kiểm thử thực tế và chưa xác nhận được chính sách bảo mật dữ liệu tài chính với doanh nghiệp, nhóm bắt buộc phải giữ quyết định **Not Yet** chứ tuyệt đối không được vội vàng đề xuất pilot trên hệ thống thật.
 
 **6.7. Hiểu bài:** giải thích bằng 5–8 câu, không nhìn tài liệu, chuỗi *problem → quy trình → metric → boundary → mức can thiệp AI → quyết định* của bài nhóm mình.
 
-<!-- Viết sau CP6, theo đúng bài của nhóm. Khung gợi ý (tự viết bằng lời của bạn):
-Problem: actor ___ gặp khó khi ___.
-Quy trình hiện tại có ___ bước, bottleneck ở bước ___ (___ phút).
-Metric: ___ từ ___ (baseline) xuống ___ (target), đo bằng ___.
-Boundary: AI không được ___; con người kiểm tra khi ___.
-Mức can thiệp: ___, vì mức đơn giản hơn (___) không đủ ở chỗ ___.
-Quyết định: ___ (Go / Not Yet / No-Go), ngưỡng dừng: nếu sau ___ mà ___ thì quay về ___. -->
-
-<!-- Kiểm tra trước khi nộp: 6.1–6.6 cộng lại tối thiểu 200 từ, có ít nhất 1 lần đổi ý cụ thể và tên người/câu hỏi thật (rubric C4). -->
+Bài toán của nhóm là nhân viên kế toán công nợ tại doanh nghiệp SME mất nhiều thời gian và dễ sót lỗi khi phải dò mắt đối chiếu từng dòng hàng giữa hóa đơn nhà cung cấp, đơn đặt hàng (PO) và biên bản giao nhận (GRN) do bất đồng định dạng và GRN là ảnh chụp/phiếu giấy viết tay. Quy trình hiện tại gồm 5 bước thủ công với nút thắt chính ở Bước 3 (dò mắt 3 bên mất 3.0–4.5 phút/bộ) và nút thắt phụ ở Bước 4 (xử lý ngoại lệ mất 10–15 phút/bộ lệch). Mục tiêu đặt ra là giảm thời gian kế toán thao tác ở luồng khớp từ 6.0–7.5 phút xuống ≤ 2.0 phút/bộ, đạt tỷ lệ phát hiện sai lệch trước HITL ≥ 98%, kiểm duyệt sạch 100% sai lệch sau HITL (False Negative = 0%) và khống chế báo nhầm dưới 15%. Ranh giới kiểm soát quy định AI tuyệt đối không tính toán số học, không tự kết luận Khớp/Lệch, không tự sửa số liệu mờ và không tự động gửi email hay hạch toán công nợ; con người bắt buộc kiểm duyệt 100% hồ sơ trên màn hình đối chiếu song song và Kế toán trưởng duyệt chi cuối cùng. Mức can thiệp được chọn là Workflow kết hợp: Rule đảm nhận gom file và so khớp số học tất định (Bước 1 & 3), AI chỉ hỗ trợ trích xuất ảnh scan GRN, gợi ý ánh xạ tên hàng và soạn nháp giải trình ngoại lệ (Bước 2 & 4), còn kế toán viên giữ quyền quyết định ở Bước 5. Quyết định cuối cùng của nhóm là **Not Yet** vì dù thiết kế Workflow rất chặt chẽ, hai rủi ro Value và Viability vẫn ở mức Cao do nhóm mới dừng ở Desk Research, chưa đo được baseline trên người dùng thật và chưa có bộ dữ liệu chứng từ hợp pháp để kiểm thử trước khi triển khai.
 
 ---
 
