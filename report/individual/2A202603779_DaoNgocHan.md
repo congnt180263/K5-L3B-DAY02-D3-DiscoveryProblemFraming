@@ -161,16 +161,16 @@ HIỆN TẠI — 30 phút/tuần (khi tổng hợp thủ công sang bảng riên
 
 | Hoạt động | Tôi đã làm gì? | Kết quả / ảnh hưởng tới bài nhóm |
 |---|---|---|
-| Pitch Problem Card | | |
-| Phản biện bài của bạn khác | Câu hỏi tôi đã đặt: | |
-| Nhận phản biện | Câu hỏi tôi nhận được: | Tôi đã sửa gì: |
-| Gom cluster / cây OST | | |
-| Chọn candidate problem | | |
-| Kiểm chứng / research | | |
-| Quy trình nhóm | | |
-| Problem Statement | | |
-| Mức can thiệp AI | | |
-| Quyết định | | |
+| Pitch Problem Card | Trình bày 3 Problem Cards cá nhân: `#1` Đón khách Xanh SM khi khuất tầm nhìn, `#2` Lội tin nhắn nhóm chat Zalo/Discord bị trôi, `#3` Gom và phân loại chi tiêu đa kênh cuối tuần | Đóng góp 3/12 candidates vào bảng `2.1 Pitch`; bài `#2` đạt điểm cao trong nhóm (28/35đ), còn bài `#1` giúp nhóm làm rõ ranh giới của Cluster D (bài toán thực địa thời gian thực) |
+| Phản biện bài của bạn khác | **Câu hỏi tôi đã đặt:**<br>1. Hỏi Nguyên ở bài `#6` (*Intern cài môi trường*): *"Có thể áp dụng chatbot vào để tăng hiệu quả làm việc được không, hay lỗi phụ thuộc từng máy?"*<br>2. Hỏi Công ở bài `#7` (*Sàng lọc CV*): *"Trong thời đại ngày nay, ứng viên dùng AI để viết CV thì việc sàng lọc CV bằng AI có còn phân biệt được năng lực thật hay không?"*<br>3. Hỏi Quyến ở bài `#12` (*Biên bản sau họp*): *"Khả năng cạnh tranh thị trường với các hệ sinh thái lớn đã tích hợp sẵn (Zoom/Teams/Meet) rất khó, đâu là khoảng trống còn lại?"* | Trực tiếp giúp nhóm loại bỏ 2 đối thủ cạnh tranh điểm cao trong shortlist (`#7` đạt 28đ nhưng thiếu ground-truth khách quan do CV viết bằng AI; `#12` đạt 30đ nhưng thị trường đã bão hòa công cụ có sẵn), từ đó củng cố sự đồng thuận chọn `#8` (Đối chiếu 3 chứng từ kế toán — ground-truth số học 100%) |
+| Nhận phản biện | **Câu hỏi tôi nhận được:**<br>1. Quyến hỏi bài `#1` (*Xanh SM*): *"Về luật pháp, không cho phép sử dụng tai nghe khi lái xe?"*<br>2. Công hỏi bài `#2` (*Chat nhóm*): *"Rủi ro khi AI tóm tắt nhầm thông tin thời gian cuộc họp?"*<br>3. Nguyên hỏi bài `#3` (*Chi tiêu*): *"Vấn đề về cho phép truy cập thông tin nhạy cảm của ngân hàng?"* | **Tôi đã sửa gì:**<br>1. Bài `#1`: Làm rõ không dùng tai nghe mà phát qua loa khoang lái/điện thoại gắn giá đỡ taplo (ô tô) hoặc chỉ phát loa ngoài khi xe giảm tốc/tấp lề (xe máy), đồng thời đồng ý tách `#1` khỏi bài lab vì khó giả lập thực địa.<br>2. Bài `#2`: Khóa cứng Boundary bắt buộc đính kèm trích dẫn tin nhắn gốc.<br>3. Bài `#3`: Giữ nguyên quyết định mức **No AI** (dùng thống kê sẵn có trong từng app ngân hàng, không kết nối dữ liệu ra ngoài) |
+| Gom cluster / cây OST | Phụ trách chính mục `2.2 Cluster`: phân tích toàn bộ 12 candidates và gom thành 4 nhóm pattern gốc (Cluster A, B, C, D) | Tạo khung phân loại nền tảng để bạn Nguyên xây dựng 3 nhánh Opportunity A, B, C trên cây OST ở mục `2.3` (tách riêng Cluster D không thuộc cùng outcome) |
+| Chọn candidate problem | Tham gia chấm điểm 12 bài trên 7 tiêu chí và thảo luận xử lý bất đồng giữa `#8`, `#11`, `#12` | Cùng nhóm chốt chọn **Candidate #8 (Đối chiếu Hóa đơn – PO – GRN, 33/35 điểm)** vì quy trình chuẩn xác, rủi ro tài chính đo được và thể hiện rõ vai trò kiểm duyệt con người (HITL) |
+| Kiểm chứng / research | Đọc đối chiếu kết quả audit MISA AMIS (của Công ở `3.2`) và bảng research AWS Textract, MISA meInvoice, Rossum.ai (của Quyến ở `3.3`) để đồng bộ thứ tự các bước nghiệp vụ | Giữ mạch nhất quán từ kết luận CP4 (*"thu hẹp vào phát hiện sai lệch & xử lý ngoại lệ trên GRN giấy/tên hàng lệch"*) sang thiết kế quy trình ở CP5 |
+| Quy trình nhóm | **Phụ trách chính mục `4.1` và `4.2`:** Thiết kế sơ đồ `mermaid` và bảng phân rã 5 bước cho cả *Quy trình hiện tại* (`4.1`) lẫn *Quy trình tương lai* (`4.2`), xác định rõ Bottleneck chính/phụ, Boundary, HITL và Phương án quay về 2 cấp | Làm xương sống định lượng (`6.0–7.5' → ~1.6'/bộ khớp`; `16–22' → ~3.3–3.8'/bộ lệch`) để bạn Nguyên lập bảng `4.3 Before/after` và viết Problem Statement `v0`, `v1` |
+| Problem Statement | Rà soát chéo các trường thời gian, phân vai `Rule` vs `AI` và điều kiện HITL giữa quy trình `4.2` với Problem Statement `v0` (Mục 5) và `v1` (Mục 7) | Đảm bảo thông số ngưỡng tin cậy OCR `< 95%` tô vàng và nguyên tắc *"Rule tính số học — AI đọc phi cấu trúc"* nhất quán xuyên suốt từ mục 4 đến mục 7 |
+| Mức can thiệp AI | **Phụ trách chính mục `6.3` và `6.4` + hoàn thiện cuối mục `6.2`:** Sửa lỗi định dạng bảng `6.2`, viết lập luận *"Vì sao không chọn mức đơn giản hơn"*, lập bảng **AI Canvas rút gọn (`6.3`)** và trả lời **2 câu hỏi Google PAIR (`6.4`)** | Làm rõ dữ liệu đầu vào nào đã có sẵn / chưa có sẵn, cơ chế vòng lặp Feedback chuyển sửa tay của kế toán thành Rule cố định, và chứng minh *Bỏ sót (False Negative)* nguy hiểm hơn *Báo nhầm (False Positive)* kèm 4 lớp chốt chặn |
+| Quyết định | Cùng nhóm rà soát 4 rủi ro (Value, Usability, Feasibility, Viability) ở mục `8` | Thống nhất chọn quyết định trung thực là **`Not Yet`** (do rủi ro Value & Viability còn Cao khi chưa phỏng vấn kế toán thật và chưa xác minh chính sách dữ liệu), kèm điều kiện shadow pilot 20 bộ và ngưỡng dừng cụ thể |
 
 ---
 
@@ -180,10 +180,10 @@ HIỆN TẠI — 30 phút/tuần (khi tổng hợp thủ công sang bảng riên
 |---|---|---|---|---|
 | CP1 Scan | Sau khi tự nêu 4 vấn đề thực tế của bản thân (`#1` đón khách Xanh SM khi khuất tầm nhìn, `#2` tìm quán ăn ở OCP2, `#3` tìm chỗ đổ rác khi mới chuyển về OCP2, `#4` đứt mạch đọc khi tra thuật ngữ mới lúc học), tôi dùng AI đóng vai Thinking Coach để chuẩn hóa Job Story và tìm thêm 6 vấn đề (`#5 → #10`) đủ 10 problems | Giúp bóc tách ý tưởng từ dạng *solution-first* về đúng chuẩn *Job Story (problem-first)* không dính từ khóa công nghệ, đồng thời mở rộng bảng Scan lên 10 vấn đề phủ đều cả 4 lăng kính | AI đưa ra một số gợi ý ban đầu chưa sát hoàn cảnh cá nhân hoặc thiên về khoảng cách hạ tầng vật lý (như đi chợ xa ở OCP2, căn giờ VinBus, gọi thợ sửa chữa điện nước, trợ lý AI quản lý toàn năng) | Tôi loại bỏ các ý quá rộng hoặc chỉ là khoảng cách vật lý; giữ lại các vấn đề có tần suất lặp lại rõ ràng và tự gắn số phút/tần suất thực tế của bản thân cho từng dòng |
 | CP2 Problem Card | Nhờ AI chuẩn hóa 3 Problem Cards (`#1` Đón khách Xanh SM, `#5` Lội tin nhắn nhóm, `#8` Gom chi tiêu đa kênh) theo đủ 10 trường của CP2 và đóng vai "PM hoài nghi" phản biện | Giúp làm sắc nét kiến trúc kết hợp ở Card #1 (**Rule Auto-call** ở Bước 2 + **Workflow Multimodal LLM phát giọng nói** ở Bước 3) và kiểm tra tổng số phút từng bước khớp với baseline | Ở Card #1, nếu không giới hạn ranh giới, AI dễ thiên về hướng tự động chỉ đường kể cả khi ảnh mờ; đặc biệt ở Card #3 (Gom chi tiêu), AI gợi ý "chụp màn hình lịch sử giao dịch từ 1–2 ngân hàng" rất thủ công và thừa thãi | Ở Card #1, tôi đặt **Boundary** chỉ phát chỉ dẫn khi khớp điểm mốc trong bán kính `< 200m` (nếu mờ thì fallback về cuộc gọi thường); ở Card #3, tôi bác bỏ hướng chụp màn hình của AI và chuyển hẳn về mức **No AI** vì bản thân 1–2 app ngân hàng/ví đã có sẵn thống kê chi tiêu |
-| CP4 Research | | | | |
-| CP5 Quy trình | | | | |
-| CP5–6 Problem Statement | | | | |
-| CP6 Mức can thiệp / quyết định | | | | |
+| CP4 Research | Phần này do bạn Công và bạn Quyến phụ trách chính; tôi dùng AI hỗ trợ đối chiếu nhanh cách phân bước của các giải pháp IDP (AWS Textract, Rossum.ai, MISA meInvoice) trước khi vẽ quy trình ở CP5 | Giúp tôi phát hiện mục `3.3` của nhóm đã đánh số sẵn *Bước 1 (Tiếp nhận), Bước 2 (Trích xuất), Bước 3 (Line-item Matching), Bước 4 (Exception Handling)* để thiết kế mục `4.1` không bị lệch thứ tự bước | AI dễ mặc định rằng mọi doanh nghiệp đều chưa có công cụ liên kết PO, trong khi tài liệu MISA AMIS ở `3.2` cho thấy luồng chuẩn đã tự lấy dữ liệu từ PO được rồi | Tôi neo chặt phạm vi quy trình nhóm vào đúng phần phần mềm hiện tại chưa giải quyết được: ảnh chụp/scan GRN viết tay, giao hàng nhiều đợt và tên hàng NCC viết tắt khác mã PO |
+| CP5 Quy trình | Nhờ AI chuyển mô tả nghiệp vụ đối chiếu 3 bên (Hóa đơn – PO – GRN) sang cú pháp sơ đồ `mermaid` (`flowchart TD`) và lập bảng phân rã 5 bước cho `4.1` và `4.2` | Tăng tốc rất nhanh việc dựng bố cục nhánh rẽ (*Khớp chuẩn 70–80%* vs *Ngoại lệ 20–30%*) và tô màu phân biệt rõ `[RULE]`, `[AI]`, `[CON NGƯỜI - HITL]`, `[Fallback]` | Bản sinh mã Mermaid đầu tiên của AI dùng dấu ngoặc vuông lồng bên trong nhãn (`[RULE]`), ký tự `<` và sinh ra lỗi gõ nhầm ký tự lạ (`songடையே` thay vì `song song`) dễ gây lỗi hiển thị ở một số trình đọc Mermaid | Tôi kiểm tra lại từng dòng trên trình Preview, yêu cầu đổi toàn bộ `[RULE]` sang `(RULE)`, thay ký tự `<` bằng chữ `dưới 95%` và sửa lỗi ký tự lạ để sơ đồ hiển thị sạch sẽ trên GitHub |
+| CP5–6 Problem Statement | Phần viết chính do bạn Nguyên đảm nhận; tôi rà soát sự khớp nối giữa thông số quy trình `4.2` và nội dung `6.3–6.4` với các trường *Boundary*, *AI intervention point* của Problem Statement `v1` | Giúp kiểm tra chéo tính nhất quán giữa ngưỡng tin cậy `< 95%`, vòng lặp từ điển ánh xạ và 5 tiêu chí eval | Nếu không nhắc kỹ bối cảnh ở `3.2`, gợi ý chung của AI thường viết Actor cho "mọi doanh nghiệp SME", bỏ quên những đơn vị đã chuẩn hóa 100% GRN điện tử | Thống nhất cùng nhóm thu hẹp rõ Actor ở `6.2` và `v1`: đơn vị nào đã số hóa GRN đúng mã PO thì dừng ở **Rule sẵn có**, không lắp thêm AI |
+| CP6 Mức can thiệp / quyết định | Dùng AI hỗ trợ cấu trúc hóa bảng **AI Canvas rút gọn (`6.3`)**, hệ thống hóa lập luận **Google PAIR (`6.4`)** và rà lỗi định dạng bảng so sánh 4 mức (`6.2`) | Giúp tách bạch rất rõ *Prediction* của AI (chỉ trích xuất OCR + gợi ý mã hàng + nháp giải trình, không tính toán tiền) với *Judgment* của kế toán viên và cơ chế tích lũy Feedback thành Rule | Trong bảng `6.2` trước đó có lỗi xuống dòng vật lý làm vỡ bảng Markdown; ngoài ra AI thường có xu hướng đề xuất "Go pilot ngay" mà đánh giá nhẹ việc nhóm chưa phỏng vấn được kế toán viên thật | Tôi sửa lại định dạng `<br>` cho bảng `6.2`, bổ sung rõ điều kiện dữ liệu đầu vào nào *chưa có sẵn* ở ô `Input` (từ điển lịch sử mã hàng NCC), và đồng thuận cùng nhóm giữ kết luận **`Not Yet`** ở Mục 8 thay vì vội vàng chọn `Go` |
 
 ---
 
@@ -193,20 +193,40 @@ Trả lời bằng trải nghiệm thật của bạn, tối thiểu 200 từ ch
 
 **6.1. Tôi học được gì khi nghe top 3 problems của các bạn khác?**
 
+Khi nghe Nguyên, Công và Quyến trình bày top 3, mình nhận ra các vấn đề đời sống cá nhân mình nghĩ ra lúc đầu (như sinh hoạt ở khu mới chuyển đến hay theo dõi chi tiêu) thường khó đặt tiêu chí đúng/sai rõ ràng bằng các bài toán nghiệp vụ có dữ liệu cụ thể. Đặc biệt ở bài đối chiếu 3 chứng từ kế toán của Công hay bài chấm 100 cặp câu trả lời prompt của Nguyên, kết quả khớp hay lệch kiểm tra được ngay trên con số thật chứ không bị cảm tính như bài tóm tắt biên bản họp hay sàng lọc CV.
+
 **6.2. Nhóm có lúc nào bị "solution-first" (nghĩ giải pháp trước khi hiểu vấn đề) không? Lúc đó nhóm nhận ra và xử lý thế nào?**
+
+Cả cá nhân mình và nhóm đều từng vướng "solution-first". Lúc làm phần cá nhân, mình từng đề xuất ngay một công cụ giải thích nhanh và lưu lại thuật ngữ khi đọc bài trên web/Gemini, sau khi phân tích lại thì nhận ra vấn đề thật sự là bị đứt mạch đọc lúc chuyển tab chứ không phải thiếu nơi để lưu trữ. Khi vào làm nhóm ở mục 2.3 (cây OST), nhiều nhánh ban đầu cũng bị viết thành tên giải pháp như "chatbot hỗ trợ intern", "AI sàng lọc CV" hay "AI đối chiếu chứng từ", nên cả nhóm đã rà lại và gạch bỏ toàn bộ tên công cụ khỏi nhánh cơ hội để chỉ giữ lại bước nghẽn thực tế của người làm.
 
 **6.3. Tôi có đổi ý sau khi bị phản biện không? Kể một lần cụ thể.**
 
+Mình đã đổi ý ở hai lần sau khi nhận phản biện từ nhóm. Cụ thể là ở Card #3 (gom chi tiêu đa tài khoản cuối tuần): ban đầu AI gợi ý quy trình chụp màn hình lịch sử ngân hàng để phân loại, cộng với câu hỏi phản biện của Nguyên về quyền truy cập dữ liệu ngân hàng, mình nhận ra người chỉ dùng 1–2 ngân hàng chính và 1 ví điện tử thì bản thân các app đó đã tự thống kê chi tiêu sẵn rồi, chụp màn hình lại càng bất tiện nên mình đổi hẳn bài đó về mức No AI. Ngoài ra ở bài đón khách Xanh SM, khi Quyến phản biện việc luật cấm đeo tai nghe lúc lái xe, mình đã sửa lại giới hạn chỉ phát qua loa ngoài khoang lái ô tô hoặc khi xe máy đã giảm tốc tấp lề.
+
 **6.4. Kết quả kiểm chứng (phỏng vấn/survey/research) có làm tôi bất ngờ không? Điều gì?**
+
+Điều làm mình bất ngờ là khi nhóm kiểm tra tài liệu MISA AMIS và meInvoice thì thấy phần mềm kế toán phổ biến trong nước vốn đã tự kéo thông tin từ PO sang chứng từ mua hàng và kiểm tra hóa đơn thuế khá trọn vẹn ở luồng chuẩn rồi. Nếu không tìm hiểu trước bước này, nhóm rất dễ đi thiết kế lại đúng phần phần mềm cũ đã làm tốt, thay vì thu hẹp bài toán vào đúng khoảng trống thực sự là biên bản giao nhận kho (GRN) chụp ảnh giấy viết tay và tên hàng nhà cung cấp viết tắt lệch với mã nội bộ.
 
 **6.5. Điều khó nhất khi viết Problem Statement là gì?**
 
+Khó nhất là phân định thật rạch ròi ranh giới giữa phần giao cho Rule với phần giao cho AI, đồng thời đặt metric sao cho không tạo lỗ hổng an toàn. Lúc đầu nhóm chỉ để chung tỷ lệ phát hiện sai lệch từ 95% trở lên, nhưng với chứng từ thanh toán thì để lọt lỗi trả thừa tiền nguy hiểm hơn báo nhầm rất nhiều, và nếu chỉ đo thời gian nhanh hơn thì kế toán lại dễ ỷ lại bấm duyệt lướt qua các bộ máy báo "Khớp", nên nhóm phải tách riêng chỉ số bỏ sót, báo nhầm và bổ sung kiểm mẫu ngẫu nhiên của Kế toán trưởng.
+
 **6.6. Nếu làm lại, tôi sẽ đổi gì? Tôi sẽ phản biện nhóm mạnh hơn ở điểm nào?**
 
+Nếu làm lại, mình sẽ đề xuất nhóm tìm cách hỏi nhanh 2–3 người có làm kế toán thực tế ngay từ CP4 để có số bấm giờ thật thay vì chỉ dựa vào desk research trên tài liệu phần mềm. Mình cũng sẽ phản biện nhóm kỹ hơn ngay từ vòng chấm điểm CP3 về khả năng tiếp cận dữ liệu mẫu (nhất là ảnh chụp phiếu giao nhận kho thực tế) và quy định bảo mật chứng từ mua hàng, vì thiếu hai bằng chứng thực tế này khiến cuối cùng nhóm buộc phải dừng ở quyết định Not Yet.
+
 **6.7. Hiểu bài:** giải thích bằng 5–8 câu, không nhìn tài liệu, chuỗi *problem → quy trình → metric → boundary → mức can thiệp AI → quyết định* của bài nhóm mình.
+
+Bài toán của nhóm tập trung vào nhân viên kế toán công nợ ở doanh nghiệp vừa và nhỏ khi phải đối chiếu thủ công từng dòng hàng giữa Hóa đơn nhà cung cấp, Đơn đặt hàng (PO) và Biên bản giao nhận kho (GRN) bản giấy/ảnh chụp có tên hàng hoặc đơn vị tính không khớp nhau. Trong quy trình 5 bước hiện tại, phần mềm kế toán mới nối được luồng chuẩn nên kế toán vẫn mất 3 đến 4,5 phút dò mắt mỗi bộ ở Bước 3 và tốn thêm 10 đến 15 phút thao tác ở Bước 4 cho khoảng 20–30% bộ bị sai lệch ngoại lệ. Nhóm đặt mục tiêu rút thời gian thao tác xuống tối đa 2 phút cho bộ khớp và 4 phút cho bộ lệch (đo bằng bấm giờ thật 20 bộ trước và sau thử nghiệm), đồng thời yêu cầu phát hiện từ 98% lỗi gài trước bước người duyệt, 0 lỗi bỏ sót sau duyệt và tỷ lệ cảnh báo nhầm dưới 15%. Về ranh giới (boundary), AI tuyệt đối không được tính toán cộng trừ tiền thuế, không tự đoán chữ số mờ dưới ngưỡng tin cậy 95% (phải để trống tô vàng), không tự hạch toán hay tự gửi email ra ngoài, và kế toán phải kiểm nhận 100% trên giao diện song song kèm nút quay về đối chiếu thủ công khi AI lỗi. Do No AI và Rule đơn thuần bị gãy trước ảnh GRN viết tay và tên hàng viết tắt còn Agent tự chủ lại quá rủi ro cho dòng tiền, nhóm chọn mức Workflow cố định: dùng Rule gom chứng từ và tính toán số học ở Bước 1, 3, chỉ dùng AI bóc tách ảnh GRN/gợi ý mã hàng ở Bước 2 và nháp giải trình ở Bước 4. Cuối cùng, nhóm chốt quyết định Not Yet vì rủi ro Value và Viability vẫn ở mức Cao khi chưa phỏng vấn kế toán viên thật và chưa xác minh chính sách dữ liệu, kèm ngưỡng dừng quay về checklist/Rule nếu shadow pilot 20 bộ để lọt bất kỳ lỗi thanh toán sai nào.
 
 ---
 
 ## 7. Tài liệu tham khảo
 
--
+- MISA AMIS. *Hướng dẫn nghiệp vụ Mua hàng theo đơn mua hàng*. https://helpact.misa.vn/kb/muahang_theodonhang/ (Truy cập 10/11/2026).
+- MISA meInvoice. *Giải pháp xử lý hóa đơn điện tử đầu vào*. https://meinvoice.vn/ (Truy cập 10/11/2026).
+- Amazon Web Services. *Amazon Textract — AnalyzeExpense & Invoice Processing*. https://aws.amazon.com/textract/ (Truy cập 10/11/2026).
+- Rossum.ai. *Intelligent Document Processing for Accounts Payable (3-way Matching)*. https://rossum.ai/solutions/accounts-payable/ (Truy cập 10/11/2026).
+- Anthropic (2024). *Building Effective Agents* (Phân biệt Workflow và Autonomous Agent). https://www.anthropic.com/research/building-effective-agents
+- Google PAIR. *People + AI Guidebook — User Needs & Defining Success* (Augment vs. Automate; False Positive vs. False Negative). https://pair.withgoogle.com/chapter/user-needs/
+- Agrawal, A., Gans, J., & Goldfarb, A. (2018). *A Simple Tool to Start Making Decisions with the Help of AI (AI Canvas)*. Harvard Business Review. https://hbr.org/2018/04/a-simple-tool-to-start-making-decisions-with-the-help-of-ai

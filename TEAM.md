@@ -6,7 +6,7 @@
 
 - Tên nhóm: D3
 - Candidate problem nhóm chọn (1 câu): Candidate #8: Đối chiếu thông tin hóa đơn từ nhà cung cấp với đơn đặt hàng (PO) và biên bản giao nhận hàng
-- Quyết định cuối (Go / Not Yet / No-Go):
+- Quyết định cuối (Go / Not Yet / No-Go): Not Yet
 
 ## Thành viên
 
@@ -14,7 +14,7 @@
 |---:|---|---|---|---|
 | 1 |Nguyễn Thành Công | 2A202603789 | Điều phối thời gian, ghi chép, người phản biện, kiếm chứng | congnt180263 |
 | 2 | Đồng Văn Quyến|2A202603769 | Người phản biện chính + phụ trách research | dvq2609 |
-| 3 | | | | |
+| 3 | Đào Ngọc Hân | 2A202603779 | Phụ trách gom Cluster (CP3), vẽ quy trình trước/sau (CP5), AI Canvas & Google PAIR (CP6), người phản biện | daongochan |
 | 4 | | | | |
 
 Không ghi email hay số điện thoại vào bảng này, vì repo có thể để public.
@@ -89,3 +89,25 @@ Học được cách pitch 1 problem một cách cụ thể không theo trend, h
 
 **Điều mình học được từ phần nhóm:**
 Học được cách kiểm chứng, phản biện từ pitching, research và kiểm định các nguồn trên internet, tìm kiếm vấn đề thiết thực cho doanh nghiệp, cách sử dụng git
+
+### DaoNgocHan-2A202603779
+
+**Phần việc phụ trách:**
+
+- Người phản biện ở CP3; phụ trách chính gom nhóm Cluster (`2.2`); thiết kế chính Quy trình hiện tại & Quy trình tương lai ở CP5 (`4.1`, `4.2`); phụ trách chính phần AI Canvas rút gọn, Google PAIR và hoàn thiện so sánh 4 mức ở CP6 (`6.2`, `6.3`, `6.4`).
+
+**Đóng góp cụ thể** (mình đã làm gì, ra sản phẩm gì):
+
+- Trình bày 3 Problem Cards cá nhân và đặt câu hỏi phản biện trực tiếp cho các candidate `#6`, `#7`, `#12` giúp nhóm lọc bỏ các bài toán thiếu ground-truth hoặc đã bão hòa công cụ có sẵn.
+- Phân tích và gom toàn bộ 12 candidates của nhóm thành 4 nhóm pattern gốc (Cluster A, B, C, D) ở mục `2.2`.
+- Xây dựng 2 sơ đồ `mermaid` (`flowchart TD`) kèm bảng chi tiết 5 bước, định lượng thời gian, ranh giới `Boundary`, điểm kiểm duyệt `HITL` và `Phương án quay về (Fallback)` 2 cấp cho bài toán đối chiếu chứng từ kế toán 3 bên ở mục `4.1` và `4.2`.
+- Chuẩn hóa bảng `6.2`, viết lập luận *"Vì sao không chọn mức đơn giản hơn"*, lập bảng **AI Canvas rút gọn (`6.3`)** và phân tích **2 câu hỏi Google PAIR (`6.4`)** chứng minh lỗi *Bỏ sót (False Negative)* nguy hiểm hơn *Báo nhầm (False Positive)*.
+
+**Bằng chứng** (phần nào trong `group_report.md`, file nào trong `report/assets/`, commit nào):
+
+- File `report/team/group_report.md`: Mục `2.1` (câu hỏi phản biện dòng `#6, #7, #12`), Mục `2.2 Cluster` (commit `fb7201a`), Mục `4.1 & 4.2 Quy trình hiện tại và tương lai` (commit `380ea95`), Mục `6.2, 6.3, 6.4` (commit `093a4b1`).
+- Báo cáo cá nhân: `report/individual/2A202603779_DaoNgocHan.md` (commit `14d0ded`, `cb60e1f`).
+
+**Điều mình học được từ phần nhóm:**
+
+- Học được cách phân biệt rạch ròi nhiệm vụ giữa **Rule** (xử lý phần tính toán số học tất định 100%) và **AI** (chỉ xử lý phần đọc hiểu chứng từ phi cấu trúc và soạn nháp ngoại lệ), cũng như sự dũng cảm ra quyết định **`Not Yet`** khi nhóm mới chỉ có Desk Research mà chưa phỏng vấn trực tiếp kế toán viên thật.
